@@ -47,7 +47,8 @@
             {
                 "start": 5,
                 "end": 25,
-                "description": "Go to downtown"
+                "description": "Go to downtown",
+                "id": null
             }
         ]
     },
@@ -97,6 +98,14 @@
         "doors": 5,
         "transmission": "automatic",
         "id": 11,
+        "trips": []
+    },
+    {
+        "size": "m",
+        "fuel": "gasoline",
+        "doors": 5,
+        "transmission": "automatic",
+        "id": 12,
         "trips": []
     }
 ]

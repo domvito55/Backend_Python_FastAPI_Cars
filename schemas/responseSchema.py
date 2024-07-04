@@ -14,7 +14,7 @@ Contact Information: mathteixeira55
 ### Imports ###
 from pydantic import BaseModel
 from typing import Union
-from models.carModel import CarModel
+from models.carModel import CarModel, CarModel2
 
 
 ### Response Schema ###
@@ -27,5 +27,5 @@ class ResponseSchema(BaseModel):
       It can be a string, a list of CarModel objects, or a single CarModel object.
     code (int): The status code of the response.
   """
-  message: Union[str, list[CarModel], CarModel]
+  message: Union[str, list[CarModel2], CarModel2]
   code: int

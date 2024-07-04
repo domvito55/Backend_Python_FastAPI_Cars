@@ -12,10 +12,11 @@ Contact Information: mathteixeira55
 """
 
 # ### Imports ###
-from pydantic import BaseModel, Field
+from pydantic import Field
+from sqlmodel import SQLModel
 
 
-class TripSchema(BaseModel):
+class TripSchema(SQLModel):
   """
   TripSchema model for data validation and serialization.
 

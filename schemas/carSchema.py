@@ -10,10 +10,11 @@ Contact Information: mathteixeira55
 """
 
 # ### Imports ###
-from pydantic import BaseModel, Field
+from sqlmodel import SQLModel
+from pydantic import Field
 
 
-class CarSchema(BaseModel):
+class CarSchema(SQLModel):
   """
   CarSchema model for data validation and serialization.
 
