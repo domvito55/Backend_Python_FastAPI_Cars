@@ -5,18 +5,17 @@ Description: This script defines the TripSchema for data validation and
  serialization of trip data in the application. The schema includes fields for
  the start and end kilometers of the trip and a description of the trip.
 Author: MathTeixeira
-Date: June 29, 2024
-Version: 1.0.2
+Date: July 4, 2024
+Version: 2.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """
 
-# ### Imports ###
-from pydantic import Field
-from sqlmodel import SQLModel
+### Imports ###
+from pydantic import BaseModel, Field
 
 
-class TripSchema(SQLModel):
+class TripSchema(BaseModel):
   """
   TripSchema model for data validation and serialization.
 
@@ -25,8 +24,12 @@ class TripSchema(SQLModel):
     end (int): The ending Km of the trip.
     description (str): A description of the trip.
   """
-  start: int = Field(..., description="The starting Km of the trip", example=0)
-  end: int = Field(..., description="The ending Km of the trip", example=5)
-  description: str = Field(...,
-                           description="A description of the trip",
-                           example="From store to home")
+  start: int | None = Field(None,
+                            description="The starting Km of the trip",
+                            example=0)
+  end: int | None = Field(None,
+                          description="The ending Km of the trip",
+                          example=5)
+  description: str | None = Field(None,
+                                  description="A description of the trip",
+                                  example="From store to home")
