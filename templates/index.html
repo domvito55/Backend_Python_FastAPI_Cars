@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+File Name: index.html
+Description: This is a simple HTML file that will be rendered by FastAPI.
+Author: MathTeixeira
+Date: July 6, 2024
+Version: 3.0.0
+License: MIT License
+Contact Information: mathteixeira55
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sharing API</title>
+</head>
+<body>
+    <h1>Welcome to Car Sharing API</h1>
+    <p>This is a simple interface for our FastAPI project.</p>
+    <h2>Search Car</h2>
+    <form id="searchForm" action="/search" method="get">
+        <label for="doors">Number of doors:</label>
+        <input type="text" id="doors" name="doors">
+        <label for="size">Car size:</label>
+        <input type="text" id="size" name="size">
+        <button type="submit">Search</button>
+    </form>
+    <script src="/static/js/processQueryParam.js"></script>
+</body>
+</html>

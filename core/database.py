@@ -3,14 +3,17 @@
 File Name: database.py
 Description: This script sets up the connection to a PostgreSQL database using SQLModel.
  It includes a Database class to manage the database connection and session.
+ It also initializes the database and provides a session for FastAPI to use.
 Author: MathTeixeira
-Date: July 4, 2024
-Version: 2.0.0
+Date: July 6, 2024
+Version: 3.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """
 
+### Imports ###
 from sqlmodel import SQLModel, Session, create_engine
+from .config import Config
 
 
 class Database:
@@ -68,3 +71,14 @@ class Database:
     # No partial changes are committed to the database.
     with Session(self.engine) as session:
       yield session
+
+
+### Load Configuration ###
+config = Config()
+
+### Global Variables ###
+carsDb = Database(userName=config.DB_USERNAME,
+                  password=config.DB_PASSWORD,
+                  host=config.DB_HOST,
+                  port=config.DB_PORT,
+                  dbName=config.DB_NAME)

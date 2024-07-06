@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+File Name: searchResults.html
+Description: This will be the template for the search results page.
+Author: MathTeixeira
+Date: July 6, 2024
+Version: 3.0.0
+License: MIT License
+Contact Information: mathteixeira55
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sharing: Search Results</title>
+</head>
+<body>
+    <h1>Welcome to Car Sharing API</h1>
+    <p>This is a simple interface for our FastAPI project.</p>
+    <h2>Cars found:</h2>
+    <ul>
+      {% for car in cars %}
+        <li>{{ car }}</li>
+      {% endfor %}
+    </ul>
+</body>
+</html>

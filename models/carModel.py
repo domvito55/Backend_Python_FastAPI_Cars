@@ -4,8 +4,8 @@ File Name: carModel.py
 Description: This script defines the Car model for representing and managing car
  data in the application.
 Author: MathTeixeira
-Date: July 4, 2024
-Version: 2.0.0
+Date: July 6, 2024
+Version: 3.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """

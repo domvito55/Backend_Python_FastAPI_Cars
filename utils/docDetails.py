@@ -22,6 +22,9 @@ sizeQuery: str | None = Query(None,
 doorsQuery: int | None = Query(None,
                                description="Filter cars by number of doors",
                                example=5)
+tripQuery: bool = Query(False,
+                        description="include trips in the response",
+                        example=True)
 ### Path Parameters ###
 # Path is used to define path parameters for the API endpoints.
 idPath: int = Path(..., description="ID of the car to retrieve", example=5)

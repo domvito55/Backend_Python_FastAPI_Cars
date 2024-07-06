@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-File Name: responseSchema.py
-Description: This script defines the ResponseSchema using Pydantic for data
- validation and serialization. The ResponseSchema is used to structure the API
- responses.
+File Name: detailedResponseSchema.py
+Description: This script defines the DetailedResponseSchema for data validation
+ and serialization. The ResponseSchema is used to structure the API responses.
 Author: MathTeixeira
 Date: July 6, 2024
 Version: 1.0.0
@@ -13,12 +12,11 @@ Contact Information: mathteixeira55
 
 ### Imports ###
 from pydantic import BaseModel
-from typing import Union
-from models import Car
+from .detailedCarSchema import DetailedCarSchema
 
 
-### Response Schema ###
-class ResponseSchema(BaseModel):
+### Detailed Response Schema ###
+class DetailedResponseSchema(BaseModel):
   """
   ResponseSchema for structuring API responses.
 
@@ -27,5 +25,5 @@ class ResponseSchema(BaseModel):
       It can be a string, a list of Car objects, or a single Car object.
     code (int): The status code of the response.
   """
-  message: Union[str, list[Car], Car]
+  message: list[DetailedCarSchema]
   code: int
