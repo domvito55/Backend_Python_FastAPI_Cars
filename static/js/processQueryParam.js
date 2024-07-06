@@ -5,7 +5,7 @@
  * to prevent empty inputs from being included in the query parameters.
  * Author: MathTeixeira
  * Date: July 6, 2024
- * Version: 3.0.0
+ * Version: 4.0.0
  * License: MIT License
  * Contact Information: mathteixeira55
  */

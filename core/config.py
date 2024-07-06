@@ -4,7 +4,7 @@ File Name: config.py
 Description: This script handles loading environment variables and other configurations.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 3.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """

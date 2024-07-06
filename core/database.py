@@ -6,7 +6,7 @@ Description: This script sets up the connection to a PostgreSQL database using S
  It also initializes the database and provides a session for FastAPI to use.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 3.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """

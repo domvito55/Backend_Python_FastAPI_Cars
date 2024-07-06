@@ -5,7 +5,7 @@ Description: This script defines the Trip model for representing and managing
  trip data in the application.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 3.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """

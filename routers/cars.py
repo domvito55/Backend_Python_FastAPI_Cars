@@ -5,7 +5,7 @@ Description: This script defines the routers for managing cars in the car
  sharing service.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 3.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """
@@ -16,8 +16,11 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlmodel import Session, select
 from core.database import carsDb
 from schemas import CarSchema, DetailedCarSchema, ResponseSchema, DetailedResponseSchema
-from models import Car
+from models import Car, User
 from utils import sizeQuery, doorsQuery, tripQuery, idPath
+from security import AuthHandler
+
+autoHandler = AuthHandler()
 
 ### Router Initialization ###
 router = APIRouter()
@@ -27,7 +30,9 @@ router = APIRouter()
 # Create
 @router.post("/", summary="Add new car", response_model=ResponseSchema)
 def addCar(
-    car: CarSchema, session: Session = Depends(carsDb.getSession)
+    car: CarSchema,
+    session: Session = Depends(carsDb.getSession),
+    user: User = Depends(autoHandler.getCurrentUser)
 ) -> ResponseSchema:
   """
   Add a new car to the database.
@@ -104,10 +109,10 @@ def getCars(
     raise HTTPException(status_code=500, detail=f"Failed to retrieve cars: {e}")
 
   if includeTrips:
-    detailed_cars = [
+    detailedCars = [
         DetailedCarSchema.model_validate(car) for car in filteredCars
     ]
-    return DetailedResponseSchema(message=detailed_cars, code=200)
+    return DetailedResponseSchema(message=detailedCars, code=200)
   return ResponseSchema(message=filteredCars, code=200)
 
 
@@ -149,7 +154,7 @@ def getCarById(
 # Update
 @router.put("/{id}", summary="Update car by ID", response_model=ResponseSchema)
 def updateCar(
-    car: CarSchema,
+    newCarInfo: CarSchema,
     id: int = idPath,
     session: Session = Depends(carsDb.getSession)
 ) -> ResponseSchema:
@@ -178,7 +183,7 @@ def updateCar(
 
   try:
     # Update the car attributes with the new values
-    updatedCar = carToUpdate.update(car).model_dump()
+    updatedCar = carToUpdate.update(newCarInfo).model_dump()
     # Save the updated car to the database
     session.commit()
   except Exception as e:

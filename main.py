@@ -6,7 +6,7 @@ Description: This script initializes a FastAPI web application for a car sharing
  managing cars and trips.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 3.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """
@@ -18,7 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from core.database import carsDb
 from schemas import ResponseSchema
-from routers import cars, trips, web
+from routers import cars, trips, web, users
 
 
 ### Lifespan Events ###
@@ -37,6 +37,7 @@ app = FastAPI(title="Car Sharing API", version="3.0.0", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 ### Include Routers ###
+app.include_router(users.router, prefix="/api/users", tags=["Users"])
 app.include_router(cars.router, prefix="/api/cars", tags=["Cars"])
 app.include_router(trips.router, prefix="/api/trips", tags=["Trips"])
 app.include_router(web.router, tags=["Web"])

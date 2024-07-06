@@ -5,7 +5,7 @@ Description: This package contains the Pydantic schemas for data validation and
  serialization in the car sharing service, including CarSchema, TripSchema, and ResponseSchema.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 3.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """
@@ -15,3 +15,5 @@ from .detailedCarSchema import DetailedCarSchema
 from .tripSchema import TripSchema
 from .responseSchema import ResponseSchema
 from .detailedResponseSchema import DetailedResponseSchema
+from .userSchema import UserSchema
+from .userProtectedSchema import UserProtectedSchema

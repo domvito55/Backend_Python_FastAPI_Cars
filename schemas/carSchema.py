@@ -5,7 +5,7 @@ Description: This script defines the CarSchema for data validation and\
  serialization using Pydantic.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 3.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """

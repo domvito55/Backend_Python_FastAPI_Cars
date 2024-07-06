@@ -6,7 +6,7 @@ Description: This script defines the TripSchema for data validation and
  the start and end kilometers of the trip and a description of the trip.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 3.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """

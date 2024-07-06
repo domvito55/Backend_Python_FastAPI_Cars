@@ -6,7 +6,7 @@ Description: This script defines the ResponseSchema using Pydantic for data
  responses.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 1.0.0
+Version: 4.0.0
 License: MIT License
 Contact Information: mathteixeira55
 """
@@ -15,6 +15,7 @@ Contact Information: mathteixeira55
 from pydantic import BaseModel
 from typing import Union
 from models import Car
+from .userProtectedSchema import UserProtectedSchema
 
 
 ### Response Schema ###
@@ -27,5 +28,5 @@ class ResponseSchema(BaseModel):
       It can be a string, a list of Car objects, or a single Car object.
     code (int): The status code of the response.
   """
-  message: Union[str, list[Car], Car]
+  message: Union[str, list[Car], Car, UserProtectedSchema]
   code: int
