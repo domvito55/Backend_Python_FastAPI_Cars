@@ -5,20 +5,24 @@ Description: This script defines the AuthHandler class for handling user
  authentication and authorization in the application.
 Author: MathTeixeira
 Date: July 6, 2024
-Version: 4.0.0
+Version: 4.1.0
 License: MIT License
 Contact Information: mathteixeira55
 """
 
 ### Imports ###
 from fastapi import Depends, HTTPException
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
+from fastapi.security import OAuth2PasswordBearer
 from sqlmodel import Session, select
 from starlette import status
 
 from core.database import carsDb
 from schemas import UserProtectedSchema
 from models import User
+
+# User will send password and username to that url to get the token, that will
+# be returned to oauth2Scheme.
+oauth2Scheme = OAuth2PasswordBearer(tokenUrl=f"/auth/token")
 
 
 class AuthHandler:
@@ -28,22 +32,27 @@ class AuthHandler:
 
   def getCurrentUser(
       self,
-      credentials: HTTPBasicCredentials = Depends(HTTPBasic()),
+      token: str = Depends(oauth2Scheme),
       session: Session = Depends(carsDb.getSession)
   ) -> UserProtectedSchema:
     """
         Get the current user from the database using the provided credentials.
 
         Args:
-          credentials (HTTPBasicCredentials): The credentials for the current user.
+          token (str): The user's authentication token.
+          session (Session): The database session.
 
         Returns:
           UserProtectedSchema: The current user from the database.
         """
-    query = select(User).where(User.username == credentials.username)
+    ########## NOTE: FOR SIMPLICITY, IN THIS SMALL PROJECT, TOKEN CONTAINS THE
+    # USERNAME ONLY; BEFORE SENDING TO PRODUCTION THIS SHOULD BE ENHANCED.
+    # ##########
+    query = select(User).where(User.username == token)
     user = session.exec(query).first()
 
-    if not user or not user.verifyPassword(credentials.password):
+    if not user or not user:
       raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                          detail="Invalid credentials")
+                          detail="Invalid credentials",
+                          headers={"WWW-Authenticate": "Bearer"})
     return UserProtectedSchema.model_validate(user)

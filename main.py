@@ -18,7 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from core.database import carsDb
 from schemas import ResponseSchema
-from routers import cars, trips, web, users
+from routers import cars, trips, web, users, auth
 
 
 ### Lifespan Events ###
@@ -37,6 +37,7 @@ app = FastAPI(title="Car Sharing API", version="3.0.0", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 ### Include Routers ###
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 app.include_router(users.router, prefix="/api/users", tags=["Users"])
 app.include_router(cars.router, prefix="/api/cars", tags=["Cars"])
 app.include_router(trips.router, prefix="/api/trips", tags=["Trips"])

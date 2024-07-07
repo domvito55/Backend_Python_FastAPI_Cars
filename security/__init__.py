@@ -10,4 +10,4 @@ License: MIT License
 Contact Information: mathteixeira55
 """
 
-from .auth import AuthHandler
+from .authHandler import AuthHandler
