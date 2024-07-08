@@ -26,16 +26,16 @@ class CarSchema(BaseModel):
   """
   size: str | None = Field(None,
                            description="The size of the car (e.g., s, m, l)",
-                           example="m")
+                           json_schema_extra={"example": "s"})
   fuel: str | None = Field(
       None,
       description=
       "The type of fuel the car uses (e.g., gasoline, diesel, electric)",
-      example="gasoline")
+      json_schema_extra={"example": "gasoline"})
   doors: int | None = Field(None,
                             description="The number of doors the car has",
-                            example=5)
+                            json_schema_extra={"example": 5})
   transmission: str | None = Field(
       None,
       description="The type of transmission (e.g., manual, automatic)",
-      example="automatic")
+      json_schema_extra={"example": "automatic"})

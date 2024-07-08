@@ -12,7 +12,7 @@ Contact Information: mathteixeira55
 """
 
 ### Imports ###
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UserProtectedSchema(BaseModel):
@@ -24,10 +24,9 @@ class UserProtectedSchema(BaseModel):
   """
   id: int | None = Field(None,
                          description="The unique identifier for the user",
-                         example=5)
+                         json_schema_extra={"example": 5})
   username: str = Field(...,
                         description="The username of the user",
-                        example="johndoe")
+                        json_schema_extra={"example": "johndoe"})
 
-  class Config:
-    from_attributes = True
+  model_config = ConfigDict(from_attributes=True)

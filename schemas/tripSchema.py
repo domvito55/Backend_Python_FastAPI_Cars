@@ -12,7 +12,7 @@ Contact Information: mathteixeira55
 """
 
 ### Imports ###
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class TripSchema(BaseModel):
@@ -26,13 +26,13 @@ class TripSchema(BaseModel):
   """
   start: int | None = Field(None,
                             description="The starting Km of the trip",
-                            example=0)
+                            json_schema_extra={"example": 0})
   end: int | None = Field(None,
                           description="The ending Km of the trip",
-                          example=5)
-  description: str | None = Field(None,
-                                  description="A description of the trip",
-                                  example="From store to home")
+                          json_schema_extra={"example": 5})
+  description: str | None = Field(
+      None,
+      description="A description of the trip",
+      json_schema_extra={"example": "From store to Home"})
 
-  class Config:
-    from_attributes = True
+  model_config = ConfigDict(from_attributes=True)

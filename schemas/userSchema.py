@@ -26,7 +26,7 @@ class UserSchema(BaseModel):
   """
   username: str = Field(...,
                         description="The username of the user",
-                        example="johndoe")
+                        json_schema_extra={"example": "johndoe"})
   password: str = Field("",
                         description="The hashed password of the user",
-                        example="password123")
+                        json_schema_extra={"example": "password123"})

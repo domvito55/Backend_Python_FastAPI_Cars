@@ -11,6 +11,7 @@ Contact Information: mathteixeira55
 """
 
 ### imports ###
+from pydantic import ConfigDict
 from sqlmodel import Field, SQLModel, Column, VARCHAR
 from passlib.context import CryptContext
 
@@ -33,8 +34,7 @@ class User(SQLModel, table=True):
       description="The username of the user")
   passwordHash: str = Field("", description="The hashed password of the user")
 
-  class Config:
-    from_attributes = True
+  model_config = ConfigDict(from_attributes=True)
 
   def setPasswrod(self, password: str) -> None:
     """

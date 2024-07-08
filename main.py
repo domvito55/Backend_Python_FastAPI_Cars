@@ -31,7 +31,7 @@ async def lifespan(app: FastAPI):
 
 
 ### Initialize FastAPI App ###
-app = FastAPI(title="Car Sharing API", version="3.0.0", lifespan=lifespan)
+app = FastAPI(title="Car Sharing API", version="4.0.0", lifespan=lifespan)
 
 # Mount the static directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -46,7 +46,7 @@ app.include_router(web.router, tags=["Web"])
 
 ### set Middlewares ###
 @app.middleware("http")
-async def add_process_time_header(request: Request, callNext):
+async def visitsCounterCockieMiddleware(request: Request, callNext):
   visitCount = 0
   if "visitCountCookie" in request.cookies:
     # Check if the cookie exists
@@ -88,7 +88,7 @@ def welcome() -> ResponseSchema:
 
 
 ### Main ###
-if __name__ == "__main__":
-  import uvicorn
+# if __name__ == "__main__":
+#   import uvicorn
 
-  uvicorn.run("carsharing:app", host="0.0.0.0", port=8000, reload=True)
+#   uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

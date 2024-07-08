@@ -51,7 +51,7 @@ class AuthHandler:
     query = select(User).where(User.username == token)
     user = session.exec(query).first()
 
-    if not user or not user:
+    if not user:
       raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                           detail="Invalid credentials",
                           headers={"WWW-Authenticate": "Bearer"})

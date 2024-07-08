@@ -29,7 +29,7 @@ templates = Jinja2Templates(directory="templates")
 @router.get("/", response_class=HTMLResponse)
 def index(request: Request, visitCountCookie: int = Cookie(0)):
   print(f"This client has being here for {visitCountCookie} times.")
-  return templates.TemplateResponse("index.html", {"request": request})
+  return templates.TemplateResponse(request, "index.html")
 
 
 # To allow bookmarking and results sharing, it is best to use get requests,
